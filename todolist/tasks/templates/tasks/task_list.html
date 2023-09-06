@@ -18,7 +18,7 @@
         {{ task.priority }}
       </li>
     {% empty %}
-      <li>No hay tareas pendientes.</li>
+      <li>Sin tareas pendientes.</li>
     {% endfor %}
   </ul>
   <a href="{% url 'task_create' user.id %}">Crear Nueva Tarea</a>
