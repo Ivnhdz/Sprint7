@@ -1,0 +1,25 @@
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+  <h1>Tareas Pendientes</h1>
+
+  {% if request.user.is_authenticated %}
+    <p>Bienvenido, {{ user.username }}!</p>
+    <p>Aquí puedes ver tus tareas pendientes.</p>
+  {% else %}
+    <p>Inicia sesión para acceder a tus tareas.</p>
+  {% endif %}
+  
+  <ul>
+    {% for task in tasks %}
+      <li>
+        <a href="{% url 'task_detail' task.id %}">{{ task.title }}</a>
+        ({{ task.due_date }})
+        {{ task.priority }}
+      </li>
+    {% empty %}
+      <li>No hay tareas pendientes.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'task_create' user.id %}">Crear Nueva Tarea</a>
+{% endblock %}
